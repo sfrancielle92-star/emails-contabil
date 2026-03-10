@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DCBE 2026 – Contábil Bandeirantes</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #f2f0eb;
+      font-family: 'DM Sans', sans-serif;
+      color: #2b2b2b;
+    }
+
+    .wrapper {
+      max-width: 620px;
+      margin: 40px auto;
+      background: #ffffff;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 6px 40px rgba(0,0,0,0.10);
+    }
+
+    /* HEADER */
+    .header {
+      background: #2d4a35;
+      padding: 44px 48px 40px;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .header::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 220px; height: 220px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(212,169,106,0.10) 0%, transparent 70%);
+    }
+
+    .header::after {
+      content: '';
+      position: absolute;
+      bottom: -40px; left: -40px;
+      width: 180px; height: 180px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,0,0,0.15) 0%, transparent 70%);
+    }
+
+    .logo-wrap {
+      margin-bottom: 28px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .logo-wrap img {
+      width: 140px;
+      height: 140px;
+      object-fit: contain;
+    }
+
+    .header-badge {
+      display: inline-block;
+      background: rgba(212, 169, 106, 0.15);
+      border: 1px solid rgba(212, 169, 106, 0.45);
+      color: #d4a96a;
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      padding: 5px 16px;
+      border-radius: 2px;
+      margin-bottom: 18px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .header h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 32px;
+      color: #ffffff;
+      line-height: 1.2;
+      font-weight: 400;
+      position: relative;
+      z-index: 1;
+    }
+
+    .header h1 em {
+      color: #d4a96a;
+      font-style: italic;
+    }
+
+    /* STRIPE */
+    .stripe {
+      height: 3px;
+      background: linear-gradient(90deg, #4a6860 0%, #d4a96a 50%, #4a6860 100%);
+    }
+
+    /* BODY */
+    .body { padding: 44px 48px; }
+
+    .salutation {
+      font-size: 16px;
+      color: #555;
+      margin-bottom: 18px;
+      font-weight: 300;
+    }
+
+    .intro {
+      font-size: 15.5px;
+      line-height: 1.8;
+      color: #333;
+      margin-bottom: 32px;
+    }
+
+    /* OBRIGADOS */
+    .alert-box {
+      border-left: 4px solid #d4a96a;
+      background: #fdf9f3;
+      padding: 20px 24px;
+      border-radius: 0 4px 4px 0;
+      margin-bottom: 32px;
+    }
+
+    .alert-title {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #d4a96a;
+      margin-bottom: 10px;
+    }
+
+    .alert-box p {
+      font-size: 14.5px;
+      line-height: 1.75;
+      color: #444;
+    }
+
+    /* CARDS */
+    .cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 30px;
+    }
+
+    .card {
+      background: #f7f6f2;
+      border: 1px solid #e8e5de;
+      border-radius: 4px;
+      padding: 20px 22px;
+    }
+
+    .card .clabel {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      color: #999;
+      margin-bottom: 8px;
+    }
+
+    .card .cvalue {
+      font-family: 'DM Serif Display', serif;
+      font-size: 17px;
+      color: #1a1a1a;
+      line-height: 1.35;
+    }
+
+    .card.gold {
+      border-color: #d4a96a;
+      background: linear-gradient(135deg, #fdf9f3, #fbf3e5);
+    }
+
+    .card.gold .clabel { color: #b8892a; }
+    .card.gold .cvalue { color: #7a5a10; }
+
+    /* INTERNAL DEADLINE */
+    .deadline-block {
+      background: #2d4a35;
+      border-radius: 4px;
+      padding: 22px 28px;
+      margin-bottom: 30px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .dl-dot {
+      width: 44px; height: 44px;
+      background: rgba(212,169,106,0.12);
+      border: 1px solid rgba(212,169,106,0.3);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .dl-text .dlabel {
+      font-size: 9.5px;
+      font-weight: 600;
+      letter-spacing: 2.2px;
+      text-transform: uppercase;
+      color: #d4a96a;
+      margin-bottom: 4px;
+    }
+
+    .dl-text .dvalue {
+      font-family: 'DM Serif Display', serif;
+      font-size: 18px;
+      color: #fff;
+    }
+
+    .dl-text .dsub {
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+      margin-top: 3px;
+    }
+
+    /* BODY TEXT */
+    .body-text {
+      font-size: 15px;
+      line-height: 1.82;
+      color: #444;
+      margin-bottom: 36px;
+    }
+
+    /* CTA */
+    .cta-wrap {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      background: linear-gradient(135deg, #4a6860, #3a5450);
+      color: #d4a96a;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 16px 42px;
+      border-radius: 3px;
+    }
+
+    .cta-sub {
+      margin-top: 12px;
+      font-size: 12px;
+      color: #aaa;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid #ebe9e2;
+      margin: 0 0 30px;
+    }
+
+    /* ASSINATURA */
+    .signature {
+      font-size: 14px;
+      line-height: 1.7;
+      color: #555;
+    }
+
+    .signature strong {
+      font-family: 'DM Serif Display', serif;
+      font-size: 16px;
+      color: #1a1a1a;
+      display: block;
+      margin-bottom: 3px;
+    }
+
+    .sig-role {
+      color: #4a6860;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    /* FOOTER */
+    .footer {
+      background: #2d4a35;
+      padding: 26px 48px;
+      text-align: center;
+    }
+
+    .footer p {
+      font-size: 11.5px;
+      color: rgba(255,255,255,0.35);
+      line-height: 1.8;
+    }
+
+    .footer a { color: #d4a96a; text-decoration: none; }
+
+    @media (max-width: 520px) {
+      .body { padding: 32px 22px; }
+      .header { padding: 32px 22px; }
+      .cards { grid-template-columns: 1fr; }
+      .deadline-block { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="logo-wrap">
+      <img src="https://email-editor-production.s3.amazonaws.com/images/1138677/editor_images/6.png" width="100" height="100" alt="Contábil Bandeirantes" style="display:block; margin:0 auto 16px auto;" />
+    </div>
+    <div class="header-badge">Declaração Obrigatória · 2026</div>
+    <h1>Prazo aberto para a entrega<br/>da <em>DCBE 2026</em></h1>
+  </div>
+  <div class="stripe"></div>
+
+  <!-- BODY -->
+  <div class="body">
+
+    <p class="salutation">Prezado(a) Cliente,</p>
+
+    <p class="intro">
+      Informamos que está aberto o prazo para entrega da <strong>DCBE 2026</strong>, referente à posição patrimonial em <strong>31/12/2025</strong>, conforme exigência do Banco Central do Brasil.
+    </p>
+
+    <div class="alert-box">
+      <div class="alert-title">⚠ Quem está obrigado</div>
+      <p>Residentes no Brasil com <strong>ativos no exterior iguais ou superiores a US$ 1.000.000,00</strong>. Atenção: em muitos casos o patrimônio não está atualizado a valor justo (AVJ) — reavaliações cambiais ou societárias podem elevar o montante e gerar obrigatoriedade mesmo quando inicialmente não identificada.</p>
+    </div>
+
+    <div class="cards">
+      <div class="card gold">
+        <div class="clabel">📅 Prazo oficial</div>
+        <div class="cvalue">15/02 a 05/04/2026<br/><small style="font-size:13px;color:#b8892a">até às 18h</small></div>
+      </div>
+      <div class="card">
+        <div class="clabel">⚖ Penalidades</div>
+        <div class="cvalue">Multas com acréscimo de até 50% sobre o valor base</div>
+      </div>
+    </div>
+
+    <div class="deadline-block">
+      <div class="dl-dot">📋</div>
+      <div class="dl-text">
+        <div class="dlabel">Nosso prazo interno</div>
+        <div class="dvalue">27 de março de 2026</div>
+        <div class="dsub">Para garantia de qualidade técnica e organização do processo</div>
+      </div>
+    </div>
+
+    <p class="body-text">
+      Para organização interna e garantia de qualidade técnica, solicitamos o envio das informações até <strong>27/03/2026</strong>. Após essa data, o atendimento estará sujeito à disponibilidade de agenda.
+      <br/><br/>
+      Nossa equipe está à disposição para realizar a <strong>análise de enquadramento</strong> e conduzir todo o processo declaratório com segurança e conformidade.
+    </p>
+
+    <div class="cta-wrap">
+      <a href="https://wa.me/551131336700" class="cta-btn">Falar com nossa equipe</a>
+      <p class="cta-sub">Responda este e-mail ou acesse nosso site para agendar uma análise</p>
+    </div>
+
+    <hr class="divider"/>
+
+    <div class="signature">
+      <strong>Equipe Contábil Bandeirantes</strong>
+      <span class="sig-role">Assessoria Contábil &amp; Compliance</span><br/>
+      <a href="https://contabilcb.com.br" style="color:#4a6860; text-decoration:none; font-size:13px;">contabilcb.com.br</a>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p>
+      Você está recebendo este e-mail por ser cliente ou contato da Contábil Bandeirantes.<br/>
+      <a href="https://contabilcb.com.br">contabilcb.com.br</a>
+    </p>
+  </div>
+
+</div>
+</body>
+</html>
